@@ -19,3 +19,4 @@ Thumbs.db
 
 # Other ignored files
 *.env
+.vercel
