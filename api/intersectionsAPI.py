@@ -6,8 +6,11 @@ intersections_ref = db.collection('intersections')
 
 intersectionsAPI = Blueprint('intersectionsAPI', __name__)
 
+print("Intersections API")
+
 @intersectionsAPI.route('/intersections', methods=['GET'])
 def get_all_intersections():
+    print("Intersections API 2")
     try:
         all_docs = intersections_ref.stream()
         intersections = {}
@@ -19,6 +22,7 @@ def get_all_intersections():
 
 @intersectionsAPI.route('/intersections/<id>', methods=['GET'])
 def get_intersection(id):
+    print("Intersections API 3")
     try:
         doc_ref = intersections_ref.document(id)
         doc = doc_ref.get()
