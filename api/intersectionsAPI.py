@@ -59,7 +59,7 @@ def get_intersection():
 
 
 @intersectionsAPI.route('/intersections/geo-json2', methods=['GET'])
-def get_intersection():
+def get_intersection_image():
     try:
         # all_docs = intersections_ref.stream()
         # intersections = {
