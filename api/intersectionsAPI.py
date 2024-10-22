@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
-from firebase_admin import firestore, initialize_app, credentials
+from firebase_admin import firestore
 
 db = firestore.client()
 intersections_ref = db.collection('intersections')
 
 intersectionsAPI = Blueprint('intersectionsAPI', __name__)
+
+
 
 @intersectionsAPI.route('/intersections', methods=['GET'])
 def get_all_intersections():
@@ -17,14 +19,38 @@ def get_all_intersections():
     except Exception as e:
         return jsonify({"error": f"An error occurred: {e}"}), 500
 
-@intersectionsAPI.route('/intersections/<id>', methods=['GET'])
-def get_intersection(id):
+@intersectionsAPI.route('/intersections/geo-json', methods=['GET'])
+def get_intersection():
     try:
-        doc_ref = intersections_ref.document(id)
-        doc = doc_ref.get()
-        if doc.exists:
-            return jsonify(doc.to_dict()), 200
-        else:
-            return jsonify({"error": "Document not found"}), 404
+        all_docs = intersections_ref.stream()
+        intersections = {
+        }
+        geoJson = {
+                    "type":"FeatureCollection",
+                    "features":[]
+                }
+
+        for doc in all_docs:
+            intersections[doc.id] = doc.to_dict()
+
+        for key in intersections:
+            new_feature = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        intersections[key]["longitude"], 
+                        intersections[key]["latitude"]
+                    ]
+                },
+                "properties": {
+                    "id": intersections[key]["id"],
+                    "name": intersections[key]["name"],
+                    "status": intersections[key]["status"],
+                    "timestamp": intersections[key]["timestamp"]
+                }
+            }
+        geoJson["features"].append(new_feature)
+        return jsonify(geoJson), 200
     except Exception as e:
         return jsonify({"error": f"An error occurred: {e}"}), 500
