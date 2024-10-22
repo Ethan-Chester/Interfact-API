@@ -52,7 +52,7 @@ def get_intersection():
                 }
             }
         geoJson["features"].append(new_feature)
-        geoJson["image_url"].append(intersections[key]["imagepath"])
+        geoJson["image_url"].append(str(intersections[key]["imagepath"]))
         return jsonify(geoJson), 200
     except Exception as e:
         return jsonify({"error": f"An error occurred: {e}"}), 500
