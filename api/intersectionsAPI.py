@@ -80,7 +80,7 @@ def get_intersection_image():
                             "name": "ELL1"
                         }
                     },
-                    "image_url": ["https://cdn.discordapp.com/attachments/1290699389160919185/1298408517501325322/isolated-white-chicken-shot-studio-316731815.png?ex=671974a9&is=67182329&hm=d6409fdf777dbabf6e23d58a7103f43eeacf41921eae2a565bb43cb1de417ec0&"]
+                    "image_url": ["https://storage.googleapis.com/interfactlive.appspot.com/WYS1_latest.jpg?Thu%20Jul%2006%202023%2000:38:31%20GMT-0400%20(Eastern%20Daylight%20Time)"]
                 }
 
         # for doc in all_docs:
