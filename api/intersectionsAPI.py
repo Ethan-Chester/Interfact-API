@@ -80,7 +80,7 @@ def get_intersection_image():
                             "name": "ELL1"
                         }
                     },
-                    "image_url": ["https://storage.googleapis.com/interfactlive.appspot.com/WYS1_latest.jpg?Thu%20Jul%2006%202023%2000:38:31%20GMT-0400%20(Eastern%20Daylight%20Time)"]
+                    "image_url": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3c3JkyQWf2fFhd5qMPKw__Mm7FeAzXrxYmQ&s"]
                 }
 
         # for doc in all_docs:
