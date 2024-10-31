@@ -6,8 +6,6 @@ intersections_ref = db.collection('intersections')
 
 intersectionsAPI = Blueprint('intersectionsAPI', __name__)
 
-
-
 @intersectionsAPI.route('/intersections', methods=['GET'])
 def get_all_intersections():
     try:
@@ -52,7 +50,8 @@ def get_intersection():
                     "image_url": intersections[key].get("imagepath", None)
                 }
             }
-        geoJson["features"].append(new_feature)
+            geoJson["features"].append(new_feature)
+            
         return jsonify(geoJson), 200
     except Exception as e:
         return jsonify({"error": f"An error occurred: {e}"}), 500
