@@ -26,7 +26,6 @@ def get_intersection():
         geoJson = {
                     "type":"FeatureCollection",
                     "features":[],
-                    "image_url": []
                 }
 
         for doc in all_docs:
@@ -51,7 +50,7 @@ def get_intersection():
                 }
             }
             geoJson["features"].append(new_feature)
-            
+
         return jsonify(geoJson), 200
     except Exception as e:
         return jsonify({"error": f"An error occurred: {e}"}), 500
